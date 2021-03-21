@@ -1,11 +1,12 @@
-import sys;
+import sys
 from pathlib import Path
 from mastodon import Mastodon
 from dotenv import dotenv_values
 
-REQUIRED_ARGS_AMOUNT = 4;
+REQUIRED_ARGS_AMOUNT = 4
 NOW_PLAYING_STRING = "🎶 Now playing:"
 config = dotenv_values(".env")
+
 
 def login():
     mastodon = Mastodon(client_id='mastotunes_clientcred.secret',
@@ -37,17 +38,23 @@ def setup_mastodon():
                             api_base_url=config["INSTANCE_ADDRESS"])
     return mastodon
 
+
 if len(sys.argv) is not REQUIRED_ARGS_AMOUNT:
-    print("Incorrect number of arguments");
+    print("Command-line syntax error: Incorrect number of arguments")
     print("Should be in the format: <song_name> <artist_name> <link>")
     # Exit status 2 = Command line syntax error
-    sys.exit(2);
+    sys.exit(2)
 
-song_name = sys.argv[1];
-artist_name = sys.argv[2];
-link = sys.argv[3];
+song_name = sys.argv[1]
+artist_name = sys.argv[2]
+link = sys.argv[3]
 
-mastodon = setup_mastodon();
-mastodon.toot(f'{NOW_PLAYING_STRING}\n{artist_name} - {song_name}\n{link}')
+mastodon = setup_mastodon()
+created_status = mastodon.status_post(f'{NOW_PLAYING_STRING}\n{artist_name} - {song_name}\n{link}')
 
+if created_status is None:
+    sys.exit("Status could not be created.")
+
+print("Status posted successfully")
+print("View it here:", created_status["url"])
 

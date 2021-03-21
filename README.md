@@ -1,5 +1,5 @@
 # Mastotunes
-Let Mastodon know what music you listen too!
+Let Mastodon know what music you listen to!
 
 ## Prerequisites
 - [Python 3.8](python_link)

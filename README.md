@@ -7,7 +7,7 @@ Let Mastodon know what music you listen too!
 
 ## Running the program
 ```bash
-python mastotunes <song_name> <artist_name> <link>
+python main.py <song_name> <artist_name> <link>
 ```
 
 This will create a status that looks like this:

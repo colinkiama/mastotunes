@@ -5,37 +5,41 @@ from dotenv import dotenv_values
 
 REQUIRED_ARGS_AMOUNT = 4
 NOW_PLAYING_STRING = "🎶 Now playing:"
-config = dotenv_values(".env")
+module_dir = Path(__file__).parent
+env_file_dir = module_dir.joinpath(".env")
+config = dotenv_values(env_file_dir)
 
-
-def login():
+def login(user_credentials_path):
     mastodon = Mastodon(client_id='mastotunes_clientcred.secret',
                         api_base_url=config["INSTANCE_ADDRESS"])
     mastodon.log_in(config["INSTANCE_EMAIL"],
                     config["INSTANCE_PASSWORD"],
-                    to_file='mastotunes_usercred.secret')
+                    to_file=user_credentials_path)
     return mastodon
 
 
 def setup_mastodon():
     mastodon = None
-    does_client_credentials_path_exist = Path(
-        "mastotunes_clientcred.secret").exists()
-    does_user_credentials_path_exist = Path(
-        "mastotunes_usercred.secret").exists()
+
+    client_cedentials_path = module_dir.joinpath(
+        "mastotunes_clientcred.secret")
+    user_credentials_path = module_dir.joinpath("mastotunes_usercred.secret")
+
+    does_client_credentials_path_exist = user_credentials_path.exists()
+    does_user_credentials_path_exist = client_cedentials_path.exists()
 
     if not does_client_credentials_path_exist:
         Mastodon.create_app(config["APPLICATION_NAME"],
                             website=config["APPLICATION_WEBSITE"],
                             api_base_url=config["INSTANCE_ADDRESS"],
-                            to_file='mastotunes_clientcred.secret')
-        mastodon = login()
+                            to_file=client_cedentials_path)
+        mastodon = login(user_credentials_path)
 
     elif not (does_user_credentials_path_exist):
-        mastodon = login()
+        mastodon = login(user_credentials_path)
 
     else:
-        mastodon = Mastodon(access_token='mastotunes_usercred.secret',
+        mastodon = Mastodon(access_token=user_credentials_path,
                             api_base_url=config["INSTANCE_ADDRESS"])
     return mastodon
 

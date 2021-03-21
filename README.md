@@ -12,6 +12,7 @@ python mastotunes <song_name> <artist_name> <link>
 
 This will create a status that looks like this:
 ```
+🎶 Now playing:
 {artist_name} - {song_name}
 {link}
 ```

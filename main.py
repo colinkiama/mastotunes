@@ -4,6 +4,7 @@ from mastodon import Mastodon
 from dotenv import dotenv_values
 
 REQUIRED_ARGS_AMOUNT = 4;
+NOW_PLAYING_STRING = "🎶 Now playing:"
 config = dotenv_values(".env")
 
 def login():
@@ -47,6 +48,6 @@ artist_name = sys.argv[2];
 link = sys.argv[3];
 
 mastodon = setup_mastodon();
-mastodon.toot(f'{artist_name} - {song_name}\n{link}')
+mastodon.toot(f'{NOW_PLAYING_STRING}\n{artist_name} - {song_name}\n{link}')
 
 

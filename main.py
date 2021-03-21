@@ -1,9 +1,10 @@
+import sys;
+from pathlib import Path
 from mastodon import Mastodon
 from dotenv import dotenv_values
-from pathlib import Path
 
+REQUIRED_ARGS_AMOUNT = 4;
 config = dotenv_values(".env")
-
 
 def login():
     mastodon = Mastodon(client_id='mastotunes_clientcred.secret',
@@ -15,8 +16,6 @@ def login():
 
 
 def setup_mastodon():
-    print(config)
-
     mastodon = None
     does_client_credentials_path_exist = Path(
         "mastotunes_clientcred.secret").exists()
@@ -37,6 +36,17 @@ def setup_mastodon():
                             api_base_url=config["INSTANCE_ADDRESS"])
     return mastodon
 
+if len(sys.argv) is not REQUIRED_ARGS_AMOUNT:
+    print("Incorrect number of arguments");
+    print("Should be in the format: <song_name> <artist_name> <link>")
+    # Exit status 2 = Command line syntax error
+    sys.exit(2);
 
-mastodon = setup_mastodon()
-mastodon.toot(f'Hey from {config["APPLICATION_NAME"]}')
+song_name = sys.argv[1];
+artist_name = sys.argv[2];
+link = sys.argv[3];
+
+mastodon = setup_mastodon();
+mastodon.toot(f'{artist_name} - {song_name}\n{link}')
+
+

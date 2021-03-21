@@ -26,6 +26,7 @@ def setup_mastodon():
 
     if not does_client_credentials_path_exist:
         Mastodon.create_app(config["APPLICATION_NAME"],
+                            website=config["APPLICATION_WEBSITE"],
                             api_base_url=config["INSTANCE_ADDRESS"],
                             to_file='mastotunes_clientcred.secret')
         mastodon = login()

@@ -5,8 +5,13 @@ Let Mastodon know what music you listen too!
 - [Python 3.8](python_link)
 - [pipenv](pipenv_link) - Package and environment management
 
-## Getting Started
-### Clone the project
+## Running the program
 ```bash
-git clone https://github.com/colinkiama/mastotunes.git
+python mastotunes <name> <artist_name> <link>
+```
+
+This will create a status that looks like this:
+```
+{artist_name} - {song}
+{link}
 ```

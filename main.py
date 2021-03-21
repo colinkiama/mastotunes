@@ -50,11 +50,8 @@ artist_name = sys.argv[2]
 link = sys.argv[3]
 
 mastodon = setup_mastodon()
-created_status = mastodon.status_post(f'{NOW_PLAYING_STRING}\n{artist_name} - {song_name}\n{link}')
-
-if created_status is None:
-    sys.exit("Status could not be created.")
+created_status = mastodon.status_post(
+    f'{NOW_PLAYING_STRING}\n{artist_name} - {song_name}\n{link}')
 
 print("Status posted successfully")
 print("View it here:", created_status["url"])
-

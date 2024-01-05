@@ -1,7 +1,8 @@
 repo_name: colinkiama/mastotunes
 report_id: 90429da40b7dcb6dc2dc77dbcfe2d913
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-12T07:11:29+00:00'
+timestamp: '2024-01-05T08:49:40+00:00'
 requested_by: colinkiama
 provider: github
 branch: master
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/colinkiama/mastotunes
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -25,6 +27,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/colinkiama/mastotunes
   detection_source: Repo Metadata
 - name: PyPI
   description: A repository of software for the Python programming language
@@ -34,12 +37,13 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/colinkiama/mastotunes/blob/master/Pipfile
   detection_source: Pipfile
   last_updated_by: Colin Kiama
   last_updated_on: 2021-03-20 22:14:58.000000000 Z
 - name: python-dotenv
   description: Add .env support to your django/flask apps in development and deployments
-  package_url: https://pypi.org/python-dotenv
+  package_url: https://pypi.org/project/python-dotenv
   version: 0.15.0
   license: BSD-3-Clause
   open_source: true
@@ -47,7 +51,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20095/default_3141eabecdd8efa55de73a33c43f2ac0d5bbf954.png
-  detection_source_url: Pipfile.lock
+  detection_source_url: https://github.com/colinkiama/mastotunes/blob/master/Pipfile.lock
   detection_source: Pipfile
   last_updated_by: Colin Kiama
   last_updated_on: 2021-03-20 22:14:58.000000000 Z
